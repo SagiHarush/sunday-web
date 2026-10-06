@@ -52,6 +52,7 @@ nav a.active { color: #53634f; background: #edf0e7; font-weight: 600; }
 .welcome-panel { display: flex; align-items: center; justify-content: space-between; min-height: 218px; overflow: hidden; }
 .primary-link { display: inline-flex; align-items: center; gap: 22px; background: #53634f; color: #fff; border-radius: 7px; padding: 11px 16px; font-size: 12px; font-weight: 500; margin-top: 22px; }
 .primary-link:hover { background: #40503d; }
+button.primary-link { border: 0; cursor: pointer; }
 .welcome-art { position: relative; width: 190px; height: 160px; flex-shrink: 0; margin-left: 24px; }
 .art-circle { position: absolute; width: 140px; height: 140px; background: #d9e1ce; border-radius: 50%; top: 8px; left: 20px; }
 .art-card { position: absolute; width: 108px; height: 125px; border-radius: 10px; }

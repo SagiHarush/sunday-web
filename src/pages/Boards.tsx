@@ -2,11 +2,12 @@ import Avatar from '../components/Avatar';
 import type { Board, Member } from '../models/workspace';
 
 interface BoardsProps {
+  workspaceName: string;
   boards: Board[];
   boardMembers: Record<string, Member[]>;
 }
 
-export default function Boards({ boards, boardMembers }: BoardsProps) {
+export default function Boards({ workspaceName, boards, boardMembers }: BoardsProps) {
   return (
     <>
       <div className="page-heading">
@@ -16,7 +17,7 @@ export default function Boards({ boards, boardMembers }: BoardsProps) {
       </div>
       <div className="section-heading">
         <h2>Workspace boards <span className="count-badge">{boards.length}</span></h2>
-        <span className="muted-label">Acme workspace</span>
+        <span className="muted-label">{workspaceName} workspace</span>
       </div>
       <div className="boards-grid">
         {boards.map((board) => (
@@ -30,7 +31,7 @@ export default function Boards({ boards, boardMembers }: BoardsProps) {
             <div className="board-team">
               <span className="team-label">BOARD MEMBERS</span>
               <ul className="board-member-list" aria-label={`${board.name} members`}>
-                {(boardMembers[board.id] ?? []).map((member) => (
+                {boardMembers[board.id].map((member) => (
                   <li key={member.id}><Avatar member={member} /><span>{member.name}</span></li>
                 ))}
               </ul>

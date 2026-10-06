@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-export default function Layout({ children }: { children: ReactNode }) {
+export default function Layout({ children, workspaceName }: { children: ReactNode; workspaceName: string }) {
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main-content">Skip to content</a>
@@ -11,8 +11,8 @@ export default function Layout({ children }: { children: ReactNode }) {
           Sunday<span className="brand-dot">.</span>
         </Link>
         <div className="workspace-label">
-          <span className="workspace-icon" aria-hidden="true">A</span>
-          <div><strong>Acme</strong><span>Workspace</span></div>
+          <span className="workspace-icon" aria-hidden="true">{workspaceName[0]}</span>
+          <div><strong>{workspaceName}</strong><span>Workspace</span></div>
         </div>
         <nav aria-label="Main navigation">
           <span className="nav-label">WORKSPACE</span>
@@ -24,7 +24,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       </aside>
       <div className="main-shell">
         <header className="topbar">
-          <span>Sunday <span className="header-divider">/</span> <strong>Acme workspace</strong></span>
+          <span>Sunday <span className="header-divider">/</span> <strong>{workspaceName} workspace</strong></span>
           <span className="profile-avatar" aria-label="Signed in as Jordan Lee">JL</span>
         </header>
         <main id="main-content">{children}</main>

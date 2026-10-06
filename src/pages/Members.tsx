@@ -1,7 +1,7 @@
 import Avatar from '../components/Avatar';
 import type { Member } from '../models/workspace';
 
-export default function Members({ members }: { members: Member[] }) {
+export default function Members({ members, workspaceName }: { members: Member[]; workspaceName: string }) {
   return (
     <>
       <div className="page-heading">
@@ -12,11 +12,11 @@ export default function Members({ members }: { members: Member[] }) {
       <section className="panel members-panel" aria-labelledby="members-title">
         <div className="members-heading">
           <h2 id="members-title">Workspace members <span className="count-badge">{members.length}</span></h2>
-          <p>Everyone collaborating in Acme.</p>
+          <p>Everyone collaborating in {workspaceName}.</p>
         </div>
         <div className="table-scroll">
           <table>
-            <caption className="sr-only">Acme workspace members</caption>
+            <caption className="sr-only">{workspaceName} workspace members</caption>
             <thead><tr><th scope="col">Name</th><th scope="col">Email address</th><th scope="col">Role</th><th scope="col">Status</th></tr></thead>
             <tbody>
               {members.map((member) => (
