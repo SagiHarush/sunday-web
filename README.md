@@ -9,6 +9,9 @@ Main workspace web application for Sunday.
 | Depends on | sunday-api |
 
 Sunday brings a team's boards and people into one shared workspace.
+Home provides a workspace overview, Boards shows projects and their collaborators,
+and Members lists the whole workspace team. Guests collaborate alongside members
+and are identified by a small role badge in the shared member list.
 
 ## Getting started
 

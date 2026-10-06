@@ -14,3 +14,12 @@ export interface Board {
   color: 'sage' | 'peach' | 'lavender';
   updatedAt: string;
 }
+
+export interface Member {
+  id: string;
+  name: string;
+  email: string;
+  role: 'Admin' | 'Member' | 'Guest';
+  status: 'Active';
+  avatarColor: 'sage' | 'peach' | 'lavender' | 'blue';
+}
