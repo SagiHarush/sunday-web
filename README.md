@@ -41,6 +41,8 @@ into the client bundle; never put secrets in them.
 | --- | --- |
 | `npm run dev` | Start the development server |
 | `npm run typecheck` | Check TypeScript without emitting files |
+| `npm test` | Run all frontend tests once |
+| `npm run test:watch` | Run tests in watch mode |
 | `npm run build` | Type-check and create a production build |
 | `npm run preview` | Serve the production build locally |
 
@@ -70,9 +72,9 @@ The local implementation returns independent copies of its data.
 
 The application opens the Acme workspace (`acme`). Workspace and board data load
 through the service layer; pages remain presentation components. For a separately
-hosted API, configure CORS for the frontend origin on sunday-api. Authentication
-is supplied by the hosting environment; this application does not implement a
-sign-in flow.
+hosted API, configure CORS for the frontend origin on sunday-api. This application
+does not implement a sign-in flow or send authentication credentials; integrate
+the deployment's authentication contract before enabling a protected API.
 
 Production hosts must serve `index.html` for client-side routes such as `/boards`
 and `/members`. `npm run preview` provides this behavior locally.
@@ -86,11 +88,33 @@ src/
   models/       TypeScript domain models
   pages/        Route-level screens
   services/     Typed API boundary and local implementation
+  test/         Test setup
+  App.test.tsx  Workspace screen and navigation tests
   App.tsx       Application entry
   main.tsx      React and routing setup
   styles.css    Application styling
+.github/
+  CODEOWNERS    Web Platform Team ownership
+  workflows/    Frontend validation
 ```
 
 ## Testing
 
-Run `npm run typecheck` and `npm run build` before submitting changes.
+Vitest and React Testing Library run five tests in jsdom. They cover the Acme
+dashboard and counts, navigation, the shared internal/guest member list, board
+collaboration, loading and retry behavior, and the API endpoint and validation
+contract. Tests always use local workspace data unless they explicitly stub fetch;
+they do not require a running backend.
+
+```sh
+npm test
+npm run typecheck
+npm run build
+```
+
+GitHub Actions installs from the lockfile with `npm ci`, checks types, runs tests,
+and builds every push and pull request. There is no deployment step.
+
+For a manual UI check, run `npm run dev` and visit Home, Boards, and Members.
+Check navigation, board collaborators, and the member list at laptop and narrow
+viewport widths. The member table scrolls horizontally on smaller screens.
