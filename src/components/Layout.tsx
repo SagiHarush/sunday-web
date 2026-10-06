@@ -1,17 +1,25 @@
 import type { ReactNode } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <aside className="sidebar">
-        <a className="brand" href="/" aria-label="Sunday home">
+        <Link className="brand" to="/" aria-label="Sunday home">
           <span className="brand-mark" aria-hidden="true">s</span>
           Sunday<span className="brand-dot">.</span>
-        </a>
+        </Link>
         <div className="workspace-label">
           <span className="workspace-icon" aria-hidden="true">A</span>
           <div><strong>Acme</strong><span>Workspace</span></div>
         </div>
+        <nav aria-label="Main navigation">
+          <span className="nav-label">WORKSPACE</span>
+          <NavLink to="/" end><span aria-hidden="true">&#8962;</span>Home</NavLink>
+          <NavLink to="/boards"><span aria-hidden="true">&#9638;</span>Boards</NavLink>
+          <NavLink to="/members"><span aria-hidden="true">&#9825;</span>Members</NavLink>
+        </nav>
         <div className="sidebar-footer">A little clarity. A lot of progress.</div>
       </aside>
       <div className="main-shell">

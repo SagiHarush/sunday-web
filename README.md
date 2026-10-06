@@ -34,13 +34,19 @@ Open the local URL printed by Vite.
 
 React and TypeScript power the application, with Vite handling development and
 production bundling. The shared shell contains workspace branding and a header.
-Styling uses plain CSS without a UI framework.
+React Router provides Home, Boards, and Members navigation. The dashboard shows
+workspace counts and boards ordered by their most recent update. Typed workspace
+data is currently bundled with the application. Styling uses plain CSS without a
+UI framework.
 
 ## Project structure
 
 ```text
 src/
   components/   Shared application UI
+  data/         Workspace data
+  models/       TypeScript domain models
+  pages/        Route-level screens
   App.tsx       Application entry
   main.tsx      React and routing setup
   styles.css    Application styling
